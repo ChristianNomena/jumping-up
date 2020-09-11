@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://images/characters/adventurer-remake.png" type="Texture" id=1]
 [ext_resource path="res://scripts/hero.gd" type="Script" id=2]
@@ -40,6 +40,39 @@ tracks/0/keys = {
 "values": [ 87, 83, 84, 88, 85, 84 ]
 }
 
+[sub_resource type="Animation" id=5]
+resource_name = "saut_bas"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 59 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "saut_haut"
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 75 ]
+}
+
 [node name="joueur" type="Node2D"]
 
 [node name="hero" type="KinematicBody2D" parent="."]
@@ -57,7 +90,7 @@ scale = Vector2( 2.5, 2.5 )
 texture = ExtResource( 1 )
 vframes = 13
 hframes = 9
-frame = 84
+frame = 60
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hero"]
 visible = false
@@ -67,3 +100,5 @@ shape = SubResource( 1 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="hero"]
 anims/idle = SubResource( 2 )
 anims/marche = SubResource( 3 )
+anims/saut_bas = SubResource( 5 )
+anims/saut_haut = SubResource( 4 )

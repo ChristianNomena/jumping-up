@@ -4,11 +4,11 @@ extends KinematicBody2D
 # Declare member variables here. Examples:
 const GRAVITY = 1000
 const UP = Vector2(0, -1)
-const ACCEL = 100
+const ACCEL = 200
 
 var velocity = Vector2()
-var nb_saut = 0
-var max_speed = 250
+#var nb_saut = 0
+var max_speed = 2000
 
 
 # Called when the node enters the scene tree for the first time.
@@ -25,8 +25,8 @@ func _physics_process(delta):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if is_on_floor():
-		nb_saut = 0
+#	if is_on_floor():
+#		nb_saut = 0
 	var saut = Input.is_action_just_pressed("ui_accept")
 	var right = Input.is_action_pressed("ui_right")
 	var left = Input.is_action_pressed("ui_left")
@@ -45,9 +45,8 @@ func _process(delta):
 		animation_loop("idle")
 		
 		
-	if saut == true and nb_saut < 2:
+	if saut == true and is_on_floor():
 		velocity.y = -500
-		nb_saut += 1
 	if velocity.y < 0:
 		animation_loop("saut_haut")
 	if velocity.y > 0:
