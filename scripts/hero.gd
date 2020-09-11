@@ -6,11 +6,12 @@ const PESANTEUR = 1.5
 const GRAVITY = 1000 * PESANTEUR
 const UP = Vector2(0, -1)
 const ACCEL = 7
-const DECEL = 0.1
+const DECEL = 0.15
 
 var velocity = Vector2()
 #var nb_saut = 0
 var max_speed = 700
+var longueur_saut = 950
 
 
 func _ready():
@@ -47,7 +48,7 @@ func mouvement_loop():
 		$AnimationPlayer.play("idle")
 
 	if saut == true and is_on_floor():
-		velocity.y = -850
+		velocity.y = -longueur_saut
 	
 	if velocity.y < 0:
 		$AnimationPlayer.play("jump")

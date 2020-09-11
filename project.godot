@@ -19,6 +19,12 @@ config/name="jumping-up"
 run/main_scene="res://scenes/Main.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+window/size/width=1366
+window/size/height=768
+window/size/fullscreen=true
+
 [input]
 
 player_left={
