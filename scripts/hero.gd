@@ -7,6 +7,7 @@ const UP = Vector2(0, -1)
 const ACCEL = 100
 
 var velocity = Vector2()
+var nb_saut = 0
 var max_speed = 250
 
 
@@ -24,8 +25,9 @@ func _physics_process(delta):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	
-#	var saut = Input.is_action_just_pressed("ui_accept")
+	if is_on_floor():
+		nb_saut = 0
+	var saut = Input.is_action_just_pressed("ui_accept")
 	var right = Input.is_action_pressed("ui_right")
 	var left = Input.is_action_pressed("ui_left")
 	var dirx = int(right) - int(left)
@@ -41,6 +43,15 @@ func _process(delta):
 	else:
 		velocity.x = lerp(velocity.x, 0, 0.15)
 		animation_loop("idle")
+		
+		
+	if saut == true and nb_saut < 2:
+		velocity.y = -500
+		nb_saut += 1
+	if velocity.y < 0:
+		animation_loop("saut_haut")
+	if velocity.y > 0:
+		animation_loop("saut_bas")
 		
 func animation_loop(animation):
 	if $AnimationPlayer.current_animation != animation:
